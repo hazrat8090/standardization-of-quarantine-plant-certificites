@@ -1,4 +1,6 @@
 "use client";
+import LogOut from "@/app/LogOut";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -9,6 +11,7 @@ const languages = [
 ];
 
 const NavBar = () => {
+  const { data: session } = useSession();
   const [selected, setSelected] = useState(languages[0]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,10 +44,10 @@ const NavBar = () => {
             width={35}
             height={35}
           />
-          <span className="ml-2 text-sm text-black">{selected.name}</span>
+          <span className="ml-0.5 text-sm text-black">{selected.name}</span>
 
           {isOpen && (
-            <div className="absolute top-9 left-0 w-32 bg-white shadow-md rounded-md mt-1">
+            <div className=" absolute top-8 left-0 w-32 bg-white shadow-md rounded-md mt-1">
               {languages.map((lang) => (
                 <div
                   key={lang.code}
@@ -87,21 +90,24 @@ const NavBar = () => {
             9+
           </div>
         </div>
+        <LogOut />
 
         {/* User Info */}
-        <div className="flex flex-col">
-          <span className="text-xs leading-3 font-medium text-white">
-            Hazrat Sultani
-          </span>
-          <span className="text-[10px] text-gray-200 text-right">Admin</span>
-        </div>
-
-        {/* User Avatar */}
+        {session?.user && (
+          <div className="flex flex-col">
+            <span className="text-xs leading-3 font-medium text-white">
+              {session.user.name}
+            </span>
+            <span className="text-[10px] text-gray-200 text-right">
+              {session.user.role}
+            </span>
+          </div>
+        )}
         <Image
           src="/assets/avatar1.png"
           alt="User Avatar"
-          width={36}
-          height={36}
+          width={35}
+          height={35}
           className="rounded-full"
         />
       </div>

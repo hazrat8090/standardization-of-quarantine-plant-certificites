@@ -10,7 +10,7 @@ export default function Sidebar() {
 
   return (
     <nav
-      className={`shadow-md h-screen p-2 flex flex-col duration-500 bg-lime-700 text-white ${
+      className={`shadow-md min-h-screen p-2 flex flex-col duration-500 bg-lime-700 rounded-sm text-white ${
         open ? "w-60" : "w-16"
       }`}
     >
@@ -37,7 +37,7 @@ export default function Sidebar() {
           return (
             <li
               key={index}
-              className="px-3 py-1 my-2 hover:bg-lime-500 rounded-md duration-300 cursor-pointer flex gap-2 items-center relative group"
+              className="px-3 py-1 my-2 hover:bg-lime-500 rounded-md duration-300 cursor-pointer flex gap-6 items-center relative group"
             >
               <div>
                 <IconComponent size={20} />
@@ -64,7 +64,16 @@ export default function Sidebar() {
       </ul>
       {/* footer */}
       <div className="flex items-center gap-2 px-3 py-2">
-        <div>{/* <FaUserCircle size={30} /> */}</div>
+        <div>
+          {/* <FaUserCircle size={30} /> */}
+          <Image
+            className="rounded-full"
+            src="/assets/avatar1.png"
+            alt="user"
+            width={45}
+            height={45}
+          />
+        </div>
         <div
           className={`leading-5 ${
             !open && "w-0 translate-x-24"
