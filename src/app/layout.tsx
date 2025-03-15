@@ -1,7 +1,7 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
 import "./globals.css";
-
+import "../i18next/i18n.ts";
 export default function RootLayout({
   children,
 }: {
@@ -9,7 +9,7 @@ export default function RootLayout({
 }) {
   return (
     <SessionProvider>
-      <html lang="en">
+      <html>
         <body>{children}</body>
       </html>
     </SessionProvider>

@@ -1,20 +1,13 @@
 "use client";
 import LogOut from "@/app/LogOut";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { useState } from "react";
-
-const languages = [
-  { code: "fa", name: "Farsi", flag: "/assets/farsi.png" },
-  { code: "pa", name: "Pashto", flag: "/assets/pashto.png" },
-  { code: "en", name: "English", flag: "/assets/english.png" },
-];
+import React from "react";
+import User from "./User";
+import Language from "./localization/LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 const NavBar = () => {
-  const { data: session } = useSession();
-  const [selected, setSelected] = useState(languages[0]);
-  const [isOpen, setIsOpen] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <div className="flex items-center justify-between p-4 bg-lime-700 rounded-sm">
       {/* Search bar */}
@@ -28,47 +21,14 @@ const NavBar = () => {
         />
         <input
           type="text"
-          placeholder="Search..."
+          placeholder={t("Search")}
           className="w-[200px] p-2 bg-transparent outline-none text-white"
         />
       </div>
 
       <div className="flex items-center gap-6 justify-end w-full">
-        <div
-          className="relative bg-white rounded-full w-24 h-8 flex items-center justify-center cursor-pointer px-2"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <Image
-            src={selected.flag}
-            alt={selected.name}
-            width={35}
-            height={35}
-          />
-          <span className="ml-0.5 text-sm text-black">{selected.name}</span>
-
-          {isOpen && (
-            <div className=" absolute top-8 left-0 w-32 bg-white shadow-md rounded-md mt-1">
-              {languages.map((lang) => (
-                <div
-                  key={lang.code}
-                  className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer"
-                  onClick={() => {
-                    setSelected(lang);
-                    setIsOpen(false);
-                  }}
-                >
-                  <Image
-                    src={lang.flag}
-                    alt={lang.name}
-                    width={20}
-                    height={20}
-                  />
-                  <span>{lang.name}</span>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* language */}
+        <Language />
 
         <div className="bg-white rounded-full w-7 h-7 flex items-center justify-center cursor-pointer">
           <Image
@@ -90,26 +50,11 @@ const NavBar = () => {
             9+
           </div>
         </div>
+        {/* log out */}
         <LogOut />
 
         {/* User Info */}
-        {session?.user && (
-          <div className="flex flex-col">
-            <span className="text-xs leading-3 font-medium text-white">
-              {session.user.name}
-            </span>
-            <span className="text-[10px] text-gray-200 text-right">
-              {session.user.role}
-            </span>
-          </div>
-        )}
-        <Image
-          src="/assets/avatar1.png"
-          alt="User Avatar"
-          width={35}
-          height={35}
-          className="rounded-full"
-        />
+        <User />
       </div>
     </div>
   );

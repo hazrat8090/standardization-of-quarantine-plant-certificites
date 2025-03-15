@@ -4,9 +4,12 @@ import "../lib/menuItems";
 import menuItems from "../lib/menuItems";
 import { MdMenuOpen } from "react-icons/md";
 import Image from "next/image";
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(true);
+  const { t } = useTranslation();
 
   return (
     <nav
@@ -42,13 +45,21 @@ export default function Sidebar() {
               <div>
                 <IconComponent size={20} />
               </div>
-              <p
-                className={`${
-                  !open && "w-0 translate-x-24"
-                } duration-500 overflow-hidden `}
+              <Link
+                href={item.href ?? "#"}
+                key={item.label}
+                className="flex items-center lg:justify-start gap-2 text-white md:px-2 rounded-md hover:bg-lamaSkyLight"
               >
-                {item.label}
-              </p>
+                {" "}
+                <span
+                  className={`${
+                    !open && "w-0 translate-x-24"
+                  } duration-500 overflow-hidden `}
+                >
+                  {t(item.label.toLowerCase())}
+                </span>
+              </Link>
+
               <p
                 className={`${
                   open && "hidden"
@@ -56,7 +67,7 @@ export default function Sidebar() {
                    w-0 p-0 text-black bg-white duration-100 overflow-hidden group-hover:w-fit group-hover:p-2 group-hover:left-16
                   `}
               >
-                {item.label}
+                {t(item.label.toLowerCase())}
               </p>
             </li>
           );

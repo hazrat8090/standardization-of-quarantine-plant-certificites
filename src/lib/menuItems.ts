@@ -1,64 +1,59 @@
 import { IoHomeOutline } from "react-icons/io5";
-import { FaProductHunt } from "react-icons/fa";
-import { MdOutlineDashboard } from "react-icons/md";
 import { CiSettings } from "react-icons/ci";
-import { IoLogoBuffer } from "react-icons/io5";
 import { TbReportSearch } from "react-icons/tb";
 import { FaFileInvoice } from "react-icons/fa";
-import { LiaFileInvoiceDollarSolid } from "react-icons/lia";
-import { GoListOrdered } from "react-icons/go";
-import { MdOutlinePriceChange } from "react-icons/md";
-import { IoIosContacts } from "react-icons/io";
-import { TbListDetails } from "react-icons/tb";
+import { FaUsers } from "react-icons/fa6";
+import { VscGitPullRequestNewChanges } from "react-icons/vsc";
+import { GrCertificate } from "react-icons/gr";
+import { IoNotificationsSharp } from "react-icons/io5";
+import { MdContactSupport } from "react-icons/md";
+import { IoMdLogOut } from "react-icons/io";
 
 const menuItems = [
   {
     icons: IoHomeOutline,
     label: "Home",
+    href: "/dashboard",
   },
   {
-    icons: MdOutlineDashboard,
-    label: "Dashboard",
+    icons: FaUsers,
+    label: "Users",
+    href: "/dashboard/list/users",
   },
   {
     icons: FaFileInvoice,
     label: "Invoices",
+    href: "/dashboard/list/invoices",
   },
   {
-    icons: LiaFileInvoiceDollarSolid,
-    label: "Quotes",
+    icons: VscGitPullRequestNewChanges,
+    label: "Applications",
+    href: "/dashboard/list/applications",
   },
   {
-    icons: GoListOrdered,
-    label: "Purchase Orders",
-  },
-  {
-    icons: MdOutlinePriceChange,
-    label: "Landed Costs",
-  },
-  {
-    icons: FaProductHunt,
-    label: "Products",
-  },
-  {
-    icons: IoIosContacts,
-    label: "Contacts",
-  },
-  {
-    icons: TbListDetails,
-    label: "Details",
-  },
-  {
-    icons: CiSettings,
-    label: "Setting",
-  },
-  {
-    icons: IoLogoBuffer,
-    label: "Log",
+    icons: GrCertificate,
+    label: "Certificates",
+    href: "/dashboard/list/certificates",
   },
   {
     icons: TbReportSearch,
-    label: "Report",
+    label: "Reports",
+    href: "/dashboard/list/reports",
+  },
+  {
+    icons: IoNotificationsSharp,
+    label: "Notifications",
+    href: "/dashboard/list/notifications",
+  },
+  {
+    icons: MdContactSupport,
+    label: "helpandsupport",
+    href: "/dashboard/list/helpandsupport",
+  },
+
+  {
+    icons: CiSettings,
+    label: "Settings",
   },
 ];
 
